@@ -1,10 +1,10 @@
-# 🍽️ Do More Complex Recipes Get Better Ratings?
+# Do More Complex Recipes Get Better Ratings?
 
 ### By Akhil Venkat
 
 ---
 
-## 📌 Introduction
+## Introduction
 
 This project investigates whether more complex recipes receive higher ratings.
 
@@ -18,7 +18,7 @@ Understanding this relationship helps us determine whether users prefer simple r
 
 ---
 
-## 🧹 Data Cleaning and Exploratory Data Analysis
+## Data Cleaning and Exploratory Data Analysis
 
 The dataset was created by merging recipe data with user interaction data.
 
@@ -34,13 +34,13 @@ Most recipes are rated highly (between 4 and 5), suggesting a positive bias in u
 
 ---
 
-## 📊 Sample Visualization
+## Sample Visualization
 
 <iframe src="assets/rating_distribution.html" width="800" height="600" frameborder="0"></iframe>
 
 ---
 
-## ❗ Assessment of Missingness
+## Assessment of Missingness
 
 We analyzed missing values in the `rating` column.
 
@@ -61,7 +61,7 @@ Missingness is likely driven by the data collection process (whether a user chos
 
 ---
 
-## 🧪 Hypothesis Testing
+## Hypothesis Testing
 
 ### Hypotheses
 
@@ -80,7 +80,7 @@ Based on the p-value, we (reject / fail to reject) the null hypothesis.
 
 ---
 
-## 🤖 Framing a Prediction Problem
+## Framing a Prediction Problem
 
 We aim to predict recipe ratings based on complexity.
 
@@ -91,7 +91,7 @@ We aim to predict recipe ratings based on complexity.
 
 ---
 
-## 📉 Baseline Model
+## Baseline Model
 
 We trained a Linear Regression model using:
 
@@ -107,7 +107,7 @@ The model captures basic trends but is limited by its linear assumptions.
 
 ---
 
-## 🚀 Final Model
+## Final Model
 
 We improved performance using a Random Forest model.
 
@@ -124,7 +124,7 @@ The final model performed better than the baseline.
 
 ---
 
-## ⚖️ Fairness Analysis
+## Fairness Analysis
 
 We tested whether the model performs differently for:
 
@@ -140,7 +140,7 @@ There is (no / some) evidence of performance disparity.
 
 ---
 
-## 🎯 Final Takeaway
+## Final Takeaway
 
 Recipe complexity does not strongly determine ratings, suggesting users value factors beyond just effort or time.
 
