@@ -65,14 +65,33 @@ Missingness is likely driven by the data collection process (whether a user chos
 
 ### Hypotheses
 
-* **H₀:** Complexity does not affect rating
-* **H₁:** More complex recipes have higher ratings
+* **H₀:** The number of steps does not affect rating
+* **H₁:** The more steps a recipe has, the higher the rating
 
-We used a permutation test comparing high vs low complexity recipes.
+I used a permutation test comparing recipies which had a higher than normal (compared to the median) number of steps
 
-### Result
+### Results
+Observed statistic = 0.0693
 
-The test produced a p-value of ___.
+Permutation range ≈ [-0.0095, 0.0110]
+
+p-value = 0.0
+
+### Outcome
+
+We tested whether recipes with more steps tend to have higher ratings using a permutation test.
+
+We split recipes into two groups based on the number of steps and computed the difference in mean ratings between the high-step and low-step groups.
+
+The observed difference in mean ratings (high-step minus low-step) was 0.069.
+
+We then performed 1000 permutations by randomly shuffling the ratings and recomputing the test statistic. The permutation distribution ranged approximately from -0.009 to 0.011.
+
+The observed statistic was more extreme than all values in the permutation distribution, resulting in a p-value of approximately 0.0.
+
+Since the p-value is less than 0.05, we reject the null hypothesis.
+
+This provides strong evidence that recipes with more steps tend to have higher ratings.
 
 ### Conclusion
 
