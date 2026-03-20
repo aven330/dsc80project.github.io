@@ -36,7 +36,7 @@ I converted all dates to datetime
 
 I converted the strings that looked like lists into actual tuples for easy accsess in columns **`tags`**, **`steps`**, **`nutrition`**, and **`ingredients`**
 
-I searched through **`description`** to find blank values and created a list of them (['***','-----','.','..','...',':)','NAN',]) to replace with NaN
+I searched through **`description`** to find blank values and created a list of them (**`['***','-----','.','..','...',':)','NAN',]`**) to replace with NaN
 
 I then computed the average rating per recipe and merged this back into the recipes dataset, resulting in one row per recipe.
 
