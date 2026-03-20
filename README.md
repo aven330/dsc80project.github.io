@@ -6,7 +6,23 @@
 
 ## Introduction
 
-For my project I chose to answer the question, “What is the relationship between the cooking time and average rating of recipes?” If we can find the relationship between cooking time and average rating then we would be able to have more accurate ratings for recipes regardless of whether or not everyone rated the recipe because we could just base it off of the cooking time to fill in the gaps.
+This project analyzes a dataset of recipes and user ratings collected from Food.com. The dataset contains information about recipes, including their preparation time, number of steps, ingredients, and user-provided ratings.
+
+The central question of this project is:
+**What is the relationship between the cooking time and the average rating of recipes?**
+
+This question is important because understanding how cooking time influences user ratings can provide insight into user preferences. For example, if longer recipes tend to receive higher ratings, it may suggest that users value more complex or detailed recipes. Conversely, if shorter recipes are rated more highly, it may indicate a preference for convenience. These insights can be useful for both recipe creators and recommendation systems.
+
+The dataset used for this analysis contains **[INSERT NUMBER] recipes**, with each row representing a unique recipe.
+
+The main columns relevant to this analysis are:
+
+- **`minutes`**: The total cooking time required to prepare the recipe (in minutes).  
+- **`avg_rating`**: The average rating of the recipe, calculated from user ratings.  
+- **`n_steps`**: The number of steps required to complete the recipe.  
+- **`n_ingredients`**: The number of ingredients used in the recipe.  
+
+These columns allow us to explore how cooking time relates to recipe ratings and whether more time-intensive recipes tend to be rated differently than quicker ones.
 
 ---
 
