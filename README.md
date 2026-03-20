@@ -6,27 +6,12 @@
 
 ## Introduction
 
-This project investigates whether more complex recipes receive higher ratings.
-
-Recipe complexity is defined using:
-
-* Number of ingredients
-* Number of steps
-* Cooking time
-
-Understanding this relationship helps us determine whether users prefer simple recipes or more elaborate ones.
+For my project I chose to answer the question, “What is the relationship between the cooking time and average rating of recipes?” If we can find the relationship between cooking time and average rating then we would be able to have more accurate ratings for recipes regardless of whether or not everyone rated the recipe because we could just base it off of the cooking time to fill in the gaps.
 
 ---
 
 ## Data Cleaning and Exploratory Data Analysis
 
-The dataset was created by merging recipe data with user interaction data.
-
-* Rows with missing ratings were preserved for missingness analysis
-* Key features were extracted:
-
-  * Number of ingredients
-  * Number of steps
 
 ### Key Insight:
 
@@ -46,7 +31,7 @@ Most recipes are rated highly (between 4 and 5), suggesting a positive bias in u
 
 
 ---
-## MNAR Analysis
+## Assessment of Missingness
 
 We believe that the `avg_rating` column is likely **MNAR (Missing Not At Random)**.
 
@@ -56,7 +41,7 @@ Since these factors are not captured in the dataset, the missingness cannot be f
 
 If we had access to additional data—such as the number of times a recipe was viewed or user engagement metrics—we might be able to explain the missingness using observed variables, which could make the missingness MAR instead.
 
-## Missingness Dependency
+### Missingness Dependency
 
 We analyzed whether the missingness of the `avg_rating` column depends on other variables in the dataset.
 
@@ -134,7 +119,7 @@ However, since this is an observational dataset and not a randomized experiment,
 
 ---
 
-## Prediction Problem
+## Framing a Prediction Problem
 
 We aim to **predict the average rating of a recipe** based on its characteristics.
 
@@ -185,6 +170,8 @@ Other metrics like RMSE could also be used, but R² is more interpretable in ter
 ### Summary
 
 This prediction problem allows us to assess whether recipe characteristics alone can meaningfully predict user ratings, and to what extent complexity influences perceived recipe quality.
+---
+## Framing a Prediction Problem
 
 ---
 
