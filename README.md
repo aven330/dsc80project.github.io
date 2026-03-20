@@ -63,39 +63,47 @@ Missingness is likely driven by the data collection process (whether a user chos
 
 ## Hypothesis Testing
 
+We investigated whether recipes with longer cooking times tend to receive higher average ratings.
+
 ### Hypotheses
 
-* **H₀:** The number of steps does not affect rating
-* **H₁:** The more steps a recipe has, the higher the rating
+- **Null Hypothesis (H₀):**  
+  Cooking time and average rating are independent. Recipes with longer cooking times do not have higher average ratings than those with shorter cooking times.
 
-I used a permutation test comparing recipies which had a higher than normal (compared to the median) number of steps
+- **Alternative Hypothesis (H₁):**  
+  Recipes with longer cooking times have higher average ratings than those with shorter cooking times.
+
+### Test Statistic
+
+We used the **difference in mean average ratings** between two groups:
+- Recipes with cooking time above the median
+- Recipes with cooking time at or below the median
+
+Specifically, the test statistic is:
+(mean rating of long recipes) − (mean rating of short recipes)
+
+This is an appropriate choice because it directly measures whether longer recipes tend to receive higher ratings.
+
+### Significance Level
+
+We used a significance level of **α = 0.05**, which is a standard threshold for determining statistical significance.
+
+### Method
+
+We conducted a permutation test by randomly shuffling the average ratings across recipes 1000 times. For each permutation, we recomputed the difference in mean ratings between the two groups to generate a distribution of the test statistic under the null hypothesis.
 
 ### Results
-Observed statistic = 0.0693
 
-Permutation range ≈ [-0.0095, 0.0110]
-
-p-value = 0.0
-
-### Outcome
-
-We tested whether recipes with more steps tend to have higher ratings using a permutation test.
-
-We split recipes into two groups based on the number of steps and computed the difference in mean ratings between the high-step and low-step groups.
-
-The observed difference in mean ratings (high-step minus low-step) was 0.069.
-
-We then performed 1000 permutations by randomly shuffling the ratings and recomputing the test statistic. The permutation distribution ranged approximately from -0.009 to 0.011.
-
-The observed statistic was more extreme than all values in the permutation distribution, resulting in a p-value of approximately 0.0.
-
-Since the p-value is less than 0.05, we reject the null hypothesis.
-
-This provides strong evidence that recipes with more steps tend to have higher ratings.
+- Observed test statistic: -0.035162877163243955
+- p-value: 1.0
 
 ### Conclusion
 
-Based on the p-value, we (reject / fail to reject) the null hypothesis.
+Since the p-value is **greater than 0.05**, we fail to reject the null hypothesis.
+
+This suggests that cooking time **does not** have a statistically significant effect on recipe ratings.
+
+However, since this is an observational dataset and not a randomized experiment, we cannot conclude a causal relationship. Instead, we interpret this as evidence of an association between cooking time and average rating.
 
 ---
 
