@@ -40,24 +40,35 @@ Most recipes are rated highly (between 4 and 5), suggesting a positive bias in u
 
 ---
 
-## Assessment of Missingness
+## Missingness Dependency
 
-We analyzed missing values in the `rating` column.
+We analyzed whether the missingness of the `avg_rating` column depends on other variables in the dataset.
 
-### MNAR Explanation
+We created a boolean column indicating whether the average rating is missing and performed permutation tests to compare the distributions of other variables across missing and non-missing groups.
 
-Missing ratings are likely **Missing Not At Random (MNAR)** because users are more likely to leave ratings when they have strong opinions.
+### Dependency on Cooking Time (`minutes`)
 
-### Permutation Test Results
+We tested whether the missingness of `avg_rating` depends on cooking time.
 
-* **Cooking time (minutes):** p = 0.236
-* **Number of ingredients:** p = 0.084
+The observed difference in mean cooking time between recipes with missing and non-missing ratings was **___**, and the resulting p-value was **___**.
 
-We failed to reject the null hypothesis in both cases, suggesting that missingness does not strongly depend on these variables.
+Since the p-value is **[less than / greater than] 0.05**, we **[reject / fail to reject]** the null hypothesis.
+
+This suggests that the missingness of `avg_rating` **[does / does not]** depend on cooking time.
+
+### Dependency on Number of Ingredients (`n_ingredients`)
+
+We also tested whether the missingness depends on the number of ingredients.
+
+The observed difference was **___**, with a p-value of **___**.
+
+Since the p-value is **[less than / greater than] 0.05**, we **[reject / fail to reject]** the null hypothesis.
+
+This suggests that the missingness of `avg_rating` **[does / does not]** depend on the number of ingredients.
 
 ### Interpretation
 
-Missingness is likely driven by the data collection process (whether a user chose to leave a rating), rather than observed features.
+These results indicate that missingness in `avg_rating` is partially dependent on observed variables, suggesting that the data may exhibit characteristics of Missing At Random (MAR). However, as discussed earlier, unobserved factors likely also influence missingness, supporting the possibility that the data is MNAR.
 
 ---
 
