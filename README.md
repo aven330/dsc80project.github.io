@@ -42,6 +42,15 @@ Most recipes are rated highly (between 4 and 5), suggesting a positive bias in u
 
 
 ---
+## MNAR Analysis
+
+We believe that the `avg_rating` column is likely **MNAR (Missing Not At Random)**.
+
+This is because ratings are only present when users choose to rate a recipe. Recipes that are less popular, less visible, or less appealing may be less likely to receive ratings. Therefore, the probability that a rating is missing depends on unobserved factors such as recipe quality or user interest.
+
+Since these factors are not captured in the dataset, the missingness cannot be fully explained by observed variables, which is characteristic of MNAR data.
+
+If we had access to additional data—such as the number of times a recipe was viewed or user engagement metrics—we might be able to explain the missingness using observed variables, which could make the missingness MAR instead.
 
 ## Missingness Dependency
 
