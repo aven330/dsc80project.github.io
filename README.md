@@ -9,7 +9,7 @@
 This project analyzes a dataset of recipes and user ratings collected from Food.com. The dataset contains information about recipes, including their preparation time, number of steps, ingredients, and user-provided ratings.
 
 The central question of this project is:
-**What is the relationship betIen the cooking time and the average rating of recipes?**
+**What is the relationship between the cooking time and the average rating of recipes?**
 
 This question is important because understanding how cooking time influences user ratings can provide insight into user preferences. For example, if longer recipes tend to receive higher ratings, it may suggest that users value more complex or detailed recipes. Conversely, if shorter recipes are rated more highly, it may indicate a preference for convenience. These insights can be useful for both recipe creators and recommendation systems.
 
@@ -83,25 +83,25 @@ I created a boolean column indicating whether the average rating is missing and 
 
 I tested whether the missingness of `avg_rating` depends on cooking time.
 
-The observed difference in mean cooking time betIen recipes with missing and non-missing ratings was **___**, and the resulting p-value was **___**.
+The observed difference in mean cooking time between recipes with missing and non-missing ratings was **117.34218767985172**, and the resulting p-value was **0.039**.
 
-Since the p-value is **[less than / greater than] 0.05**, I **[reject / fail to reject]** the null hypothesis.
+Since the p-value is **less than 0.05**, I **reject** the null hypothesis.
 
-This suggests that the missingness of `avg_rating` **[does / does not]** depend on cooking time.
+This suggests that the missingness of `avg_rating` **does** depend on cooking time.
 
 ### Dependency on Number of Ingredients (`n_ingredients`)
 
 I also tested whether the missingness depends on the number of ingredients.
 
-The observed difference was **___**, with a p-value of **___**.
+The observed difference was **0.25422661366086885**, with a p-value of **0.0**.
 
-Since the p-value is **[less than / greater than] 0.05**, I **[reject / fail to reject]** the null hypothesis.
+Since the p-value is **less than 0.05**, I **reject** the null hypothesis.
 
-This suggests that the missingness of `avg_rating` **[does / does not]** depend on the number of ingredients.
+This suggests that the missingness of `avg_rating` **does** depends on the number of ingredients.
 
 ### Interpretation
 
-These results indicate that missingness in `avg_rating` is partially dependent on observed variables, suggesting that the data may exhibit characteristics of Missing At Random (MAR). HoIver, as discussed earlier, unobserved factors likely also influence missingness, supporting the possibility that the data is MNAR.
+These results indicate that missingness in `avg_rating` is partially dependent on observed variables, suggesting that the data may exhibit characteristics of Missing At Random (MAR). However, as discussed earlier, unobserved factors likely also influence missingness, supporting the possibility that the data is MNAR.
 <iframe src="assets/fig_missingness_dependency.html" width="800" height="600" frameborder="0"></iframe>
 
 ---
@@ -120,7 +120,7 @@ I investigated the hypothesis of 'What is the relationship between the cooking t
 
 ### Test Statistic
 
-I used the **difference in mean average ratings** betIen two groups:
+I used the **difference in mean average ratings** between two groups:
 - Recipes with cooking time above the median
 - Recipes with cooking time at or below the median
 
@@ -135,7 +135,7 @@ I used a significance level of **α = 0.05**, which is a standard threshold for 
 
 ### Method
 
-I conducted a permutation test by randomly shuffling the average ratings across recipes 1000 times. For each permutation, I recomputed the difference in mean ratings betIen the two groups to generate a distribution of the test statistic under the null hypothesis.
+I conducted a permutation test by randomly shuffling the average ratings across recipes 1000 times. For each permutation, I recomputed the difference in mean ratings between the two groups to generate a distribution of the test statistic under the null hypothesis.
 
 ### Results
 
@@ -148,7 +148,7 @@ Since the p-value is **greater than 0.05**, I fail to reject the null hypothesis
 
 This suggests that cooking time **does not** have a statistically significant effect on recipe ratings.
 
-HoIver, since this is an observational dataset and not a randomized experiment, I cannot conclude a causal relationship. Instead, I interpret this as evidence of an association betIen cooking time and average rating.
+However, since this is an observational dataset and not a randomized experiment, I cannot conclude a causal relationship. Instead, I interpret this as evidence of an association between cooking time and average rating.
 <iframe src="assets/fig_permutation_distribution.html" width="800" height="600" frameborder="0"></iframe> 
 
 ---
@@ -230,8 +230,12 @@ We tuned the following hyperparameters using GridSearchCV:
 - `n_estimators`: number of trees in the forest
 
 The best parameters were:
-- max_depth = ___  
-- n_estimators = ___  
+'''
+param_grid = {
+    'model__max_depth': [5, 10, 15],
+    'model__n_estimators': [50, 100]
+}
+'''
 
 These were selected based on cross-validation performance using R².
 
@@ -250,26 +254,54 @@ The final model achieved better performance than the baseline model, indicating 
 The improvement suggests that the relationship between recipe characteristics and ratings is not purely linear, and that capturing complexity through engineered features leads to better predictions.
 
 ---
-
-
 ## Fairness Analysis
 
-I tested whether the model performs differently for:
+We evaluated whether our model performs differently across groups of recipes.
 
-* Simple recipes vs complex recipes
+### Groups
 
-### Result:
+We defined the following groups based on recipe complexity:
 
-The difference in RMSE was tested using permutation testing.
+- **Group X (simple recipes):** recipes with a number of ingredients less than or equal to the median  
+- **Group Y (complex recipes):** recipes with a number of ingredients greater than the median  
 
-### Conclusion:
+### Evaluation Metric
 
-There is (no / some) evidence of performance disparity.
+We used **Root Mean Squared Error (RMSE)** to evaluate model performance, since this is a regression problem. RMSE measures the average prediction error, with higher values indicating worse performance.
 
----
+### Hypotheses
 
-## Final Takeaway
+- **Null Hypothesis (H₀):**  
+  The model is fair. The RMSE for simple and complex recipes is the same, and any observed difference is due to random chance.
 
-Recipe complexity does not strongly determine ratings, suggesting users value factors beyond just effort or time.
+- **Alternative Hypothesis (H₁):**  
+  The model is unfair. The RMSE for simple recipes is higher than for complex recipes.
 
+### Test Statistic
+
+We used the difference in RMSE between the two groups:
+
+RMSE (simple recipes) − RMSE (complex recipes)
+
+### Significance Level
+
+We used a significance level of **α = 0.05**.
+
+### Method
+
+We performed a permutation test by randomly shuffling group labels 1000 times and recomputing the difference in RMSE for each permutation.
+
+### Results
+
+- Observed RMSE difference: **0.020550026266543786**  
+- p-value: **0.103**
+- 
+
+### Conclusion
+
+Since the p-value is **greater than 0.05**, we **fail to reject** the null hypothesis.
+
+This suggests that the model **does not** perform worse for simple recipes compared to complex recipes.
+
+However, as with all observational analyses, this result reflects association rather than causation.
 ---
