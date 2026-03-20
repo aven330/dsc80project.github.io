@@ -58,10 +58,8 @@ This cleaning process ensures that our dataset accurately reflects user ratings 
 <iframe src="assets/fig_bivariate_analysis_1.html" width="800" height="600" frameborder="0"></iframe>
 <iframe src="assets/fig_bivariate_analysis_2.html" width="800" height="600" frameborder="0"></iframe>
 <iframe src="assets/fig_bivariate_analysis_3.html" width="800" height="600" frameborder="0"></iframe>
----
 <iframe src="assets/fig_univariate_analysis_1_new.html" width="800" height="600" frameborder="0"></iframe>
 <iframe src="assets/fig_univariate_analysis_2_new.html" width="800" height="600" frameborder="0"></iframe> 
-<iframe src="assets/fig_permutation_distribution.html" width="800" height="600" frameborder="0"></iframe> 
 
 
 ---
@@ -151,6 +149,7 @@ Since the p-value is **greater than 0.05**, I fail to reject the null hypothesis
 This suggests that cooking time **does not** have a statistically significant effect on recipe ratings.
 
 HoIver, since this is an observational dataset and not a randomized experiment, I cannot conclude a causal relationship. Instead, I interpret this as evidence of an association betIen cooking time and average rating.
+<iframe src="assets/fig_permutation_distribution.html" width="800" height="600" frameborder="0"></iframe> 
 
 ---
 
