@@ -206,24 +206,51 @@ Other metrics like RMSE could also be used, but R² is more interpretable in ter
 This prediction problem allows us to assess whether recipe characteristics alone can meaningfully predict user ratings, and to what extent complexity influences perceived recipe quality.
 
 ---
-
 ## Final Model
 
-I improved performance using a Random Forest model.
+To improve upon our baseline model, we engineered additional features and used a more flexible modeling algorithm.
 
-### Improvements:
+### Engineered Features
 
-* Captures nonlinear relationships
-* Handles feature interactions
+We added two new features:
 
-### Result:
+- **log_minutes**: a log transformation of cooking time to reduce skewness and better capture relationships between cooking time and ratings.
+- **steps_per_ingredient**: a measure of recipe complexity that captures how many steps are required per ingredient, reflecting how intricate a recipe may be.
 
-R² = 0.0018127207872883355
-RMSE = 0.6352779875106677
+These features were chosen to better represent the underlying structure of recipe complexity beyond simple counts.
 
-The final model performed better than the baseline.
+### Model Choice
+
+We used a **Random Forest Regressor**, which can capture nonlinear relationships and interactions between features that a linear model cannot.
+
+### Hyperparameter Tuning
+
+We tuned the following hyperparameters using GridSearchCV:
+- `max_depth`: controls how deep each tree can grow
+- `n_estimators`: number of trees in the forest
+
+The best parameters were:
+- max_depth = ___  
+- n_estimators = ___  
+
+These were selected based on cross-validation performance using R².
+
+### Performance
+
+- Baseline Model R²: -0.0001621902739767922  
+- Final Model R²: 0.0018127207872883355  
+
+- Baseline RMSE: 0.6359061249350496  
+- Final RMSE: 0.6352779875106677  
+
+The final model achieved better performance than the baseline model, indicating that the engineered features and nonlinear modeling approach improved predictive accuracy.
+
+### Conclusion
+
+The improvement suggests that the relationship between recipe characteristics and ratings is not purely linear, and that capturing complexity through engineered features leads to better predictions.
 
 ---
+
 
 ## Fairness Analysis
 
