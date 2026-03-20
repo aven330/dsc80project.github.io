@@ -107,30 +107,57 @@ However, since this is an observational dataset and not a randomized experiment,
 
 ---
 
-## Framing a Prediction Problem
+## Prediction Problem
 
-We aim to predict recipe ratings based on complexity.
+We aim to **predict the average rating of a recipe** based on its characteristics.
 
-* **Type:** Regression
-* **Target:** Rating
-* **Features:** Ingredients, steps, time
-* **Metric:** R² score
+### Type of Problem
 
----
+This is a **regression problem**, since the response variable (average rating) is continuous.
 
-## Baseline Model
+### Response Variable
 
-We trained a Linear Regression model using:
+- **`avg_rating`**
 
-* Number of ingredients
-* Number of steps
-* Cooking time
+We chose this variable because it summarizes user feedback for each recipe and represents overall user satisfaction. Using the average rating per recipe avoids duplication issues from multiple individual reviews and provides a stable target for prediction.
 
-### Result:
+### Features Used
 
-R² = ___
+We use features that describe the recipe’s complexity and content, including:
+- `minutes` (cooking time)
+- `n_steps` (number of steps)
+- `n_ingredients` (number of ingredients)
 
-The model captures basic trends but is limited by its linear assumptions.
+These features are all quantitative and capture different aspects of how complex or time-consuming a recipe is.
+
+### Time of Prediction
+
+At the time of prediction, we assume we only have access to information available **before users rate the recipe**, such as:
+- cooking time  
+- number of steps  
+- number of ingredients  
+
+We do **not** use:
+- `avg_rating` (target)
+- individual user ratings
+- review text
+
+This ensures that our model does not use information that would only be available after the recipe has already been rated.
+
+### Evaluation Metric
+
+We use the **R² (coefficient of determination)** to evaluate model performance.
+
+R² measures how well the model explains the variability in the response variable (average rating). It is appropriate here because:
+- the target is continuous  
+- we care about how well the model captures overall trends  
+- it provides an interpretable measure of goodness-of-fit  
+
+Other metrics like RMSE could also be used, but R² is more interpretable in terms of explained variance.
+
+### Summary
+
+This prediction problem allows us to assess whether recipe characteristics alone can meaningfully predict user ratings, and to what extent complexity influences perceived recipe quality.
 
 ---
 
