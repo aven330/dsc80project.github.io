@@ -36,7 +36,10 @@ Most recipes are rated highly (between 4 and 5), suggesting a positive bias in u
 
 ## Sample Visualization
 
-<iframe src="assets/rating_distribution.html" width="800" height="600" frameborder="0"></iframe>
+<iframe src="assets/fig_bivariate_analysis_1.html" width="800" height="600" frameborder="0"></iframe>
+<iframe src="assets/fig_bivariate_analysis_2.html" width="800" height="600" frameborder="0"></iframe>
+<iframe src="assets/fig_bivariate_analysis_3.html" width="800" height="600" frameborder="0"></iframe>
+
 
 ---
 
